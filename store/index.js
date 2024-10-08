@@ -15,6 +15,7 @@ export const useIndexStore = defineStore('index', {
             try {
                 const response = await axios.get('http://localhost/wordpress/wp-json/myportfolio/v1/informations')
                 this.index = [response.data]
+                
             } catch (e) {
                 console.log(e)
             }

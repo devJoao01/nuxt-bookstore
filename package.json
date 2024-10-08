@@ -4,17 +4,25 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "clean": "cross-env NODE_ENV=production npx postcss ./assets/css/**/*.css --dir dist",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.4",
+    "postcss-load-config": "^6.0.1",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0"
   }
 }
