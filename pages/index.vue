@@ -1,3 +1,19 @@
 <template>
-  <h2>API</h2>
+  <div>
+    <ul>
+      <li v-for="book in books" :key="book.id">
+        <h3>{{ book.title }} - {{ book.author }}</h3>
+      </li>
+    </ul>
+  </div>
 </template>
+
+
+<script setup>
+import { onMounted } from 'vue';
+import { useBooks } from '../composables/useBook';
+
+const { books, fetchBooks } = useBooks();
+
+onMounted(fetchBooks);
+</script>

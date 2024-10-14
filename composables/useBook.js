@@ -1,14 +1,19 @@
 import { ref } from 'vue';
-import { useMyApi } from '@/store/myApi';
+import { useMyApi } from '../store/myApi';
 
-export const useBook = (id) => {
-    const store = useMyApi();
-    const book = ref(null);
+export const useBooks = () => {
+  const store = useMyApi();
+  const error = ref(null);
+  const books = ref([]);
 
-    const fetchBook = async () => {
-        await store.fetchBook(id);
-        book.value = store.book;
-    };
+  const fetchBooks = async () => {
+    try {
+      await store.fetchBooks();
+      books.value = store.books;
+    } catch (err) {
+      error.value = 'Erro ao buscar os livros';
+    }
+  };
 
-    return { book, fetchBook };
+  return { books, error, fetchBooks };
 };
