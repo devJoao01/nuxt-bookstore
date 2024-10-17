@@ -25,8 +25,8 @@ export const useMyApi = defineStore('myApi', {
         },
         async createBook(book) {
             try {
-                await createItem(book);
-                await this.fetchBooks(); 
+                const response = await createItem(book);
+                this.books.push(response.data);
             } catch (error) {
                 console.error('Erro ao criar o livro:', error);
             }
@@ -34,7 +34,7 @@ export const useMyApi = defineStore('myApi', {
         async updateBook(id, book) {
             try {
                 await updateItem(id, book);
-                await this.fetchBook(id); 
+                await this.fetchBook(id);
             } catch (error) {
                 console.error('Erro ao atualizar o livro:', error);
             }
@@ -42,7 +42,7 @@ export const useMyApi = defineStore('myApi', {
         async deleteBook(id) {
             try {
                 await deleteItem(id);
-                await this.fetchBooks(); 
+                await this.fetchBooks();
             } catch (error) {
                 console.error('Erro ao deletar o livro:', error);
             }
