@@ -12,13 +12,12 @@ export function useUpdateBookForm() {
 
     const myApi = useMyApi();
 
-    const UpdateBook = async (id, bookDetails) => {
+    const updateBook = async (id, bookDetails) => {
         try {
-            form.value = { ...bookDetails }; 
-            await myApi.updateBook(id, form.value);
-            resetForm();
+            await myApi.updateBook(id, { ...bookDetails });
+            resetForm(); 
         } catch (error) {
-            console.log(error);
+            console.log('Erro ao atualizar livro:', error);
         }
     };
 
@@ -30,11 +29,11 @@ export function useUpdateBookForm() {
             publisher: '',
             publication_year: '',
         };
-    }
+    };
 
     return {
         form,
-        UpdateBook,
+        updateBook,
         resetForm,
     };
 }
