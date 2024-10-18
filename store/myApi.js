@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { getItems, getItem, createItem, updateItem, deleteItem } from '@/services/api';
+import Swal from 'sweetalert2'
 
 export const useMyApi = defineStore('myApi', {
     state: () => ({
@@ -27,10 +28,22 @@ export const useMyApi = defineStore('myApi', {
             try {
                 const response = await createItem(book);
                 this.books.push(response.data);
+                Swal.fire({
+                    title: "SUCESSO!!",
+                    text: "LIVRO REGISTRADO COM SUCESSO!",
+                    icon: "success"
+                });
             } catch (error) {
-                console.error('Erro ao criar o livro:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `Erro ao criar o livro: ${error.message}`,
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
             }
         },
+
+
         async updateBook(id, book) {
             try {
                 await updateItem(id, book);
@@ -39,12 +52,39 @@ export const useMyApi = defineStore('myApi', {
                 console.error('Erro ao atualizar o livro:', error);
             }
         },
+        
+
         async deleteBook(id) {
             try {
-                await deleteItem(id);
-                await this.fetchBooks();
+                const result = await Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                });
+
+                if (result.isConfirmed) {
+                    const response = await deleteItem(id);
+                    this.books = this.books.filter(book => book.id !== response.data.id);
+
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+
+                    return response.data;
+                }
             } catch (error) {
-                console.error('Erro ao deletar o livro:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
             }
         }
     },

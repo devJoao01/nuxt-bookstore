@@ -1,0 +1,43 @@
+.list-options {
+    padding: 0;
+    margin: 0;
+    li {
+        list-style: none;
+        height: 100%;
+    }
+
+    .row {
+        gap: 12px 0;
+        margin: 40px 0 10px;
+
+        .card {
+            border: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+            height: 100%;
+
+            .card-thumb {
+                overflow: hidden;
+                height: 300px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .card-body {
+                .title {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    font-size: 24px;
+                }
+
+                span {
+                    display: block;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

@@ -16,8 +16,9 @@ export function useBookForm() {
   const submitForm = async () => {
     try {
       await myApi.createBook(form.value);
+
       resetForm();
-      errorMessage.value = ''; 
+      errorMessage.value = '';
     } catch (error) {
       errorMessage.value = 'Erro ao cadastrar o livro. Tente novamente.';
     }

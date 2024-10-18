@@ -1,0 +1,29 @@
+.list-options {
+    padding: 0;
+    margin: 0;
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 18px 0;
+        .box-title{
+            .title{
+                text-transform: uppercase;
+            }
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+
+            button{
+                border-radius: 4px;
+                background-color: #f00;
+                border: none;
+                text-transform: uppercase;
+                padding: 4px 24px;
+                color: #fff;
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.header {
+    .top-bar {
+        background-color: #1c1c1c;
+        height: 30px;
+    }
+
+    .apresentation-header {
+        padding: 10px 0;
+
+        .container {
+            .title {
+                text-transform: uppercase;
+            }
+        }
+    }
+}
