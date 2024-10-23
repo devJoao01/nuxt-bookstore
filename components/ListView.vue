@@ -3,7 +3,7 @@
     <ul class="list-options">
       <div class="box-title">
         <h2 class="title">
-          LIST BOOKS
+          TESTE
         </h2>
         <div class="page">
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus odio facere repellendus optio ut numquam
@@ -35,11 +35,12 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import { useBooks } from '../composables/useBook';
+import { useListViewBooks } from '../composables/useListViewBooks';
 
-const { books, fetchBooks } = useBooks();
+const { books, fetchBooks } = useListViewBooks();
 
 onMounted(fetchBooks);
+
 </script>
 
 <style scoped src="../assets/css/list-view.css"></style>

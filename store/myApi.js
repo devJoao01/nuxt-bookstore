@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { getItems, getItem, createItem, updateItem, deleteItem } from '@/services/api';
+import { messages } from '@/utils/messages';
 import Swal from 'sweetalert2'
 
 export const useMyApi = defineStore('myApi', {
@@ -7,6 +8,7 @@ export const useMyApi = defineStore('myApi', {
         books: [],
         book: null,
     }),
+
     actions: {
         async fetchBooks() {
             try {
@@ -16,6 +18,7 @@ export const useMyApi = defineStore('myApi', {
                 console.error('Erro ao buscar os livros:', error);
             }
         },
+
         async fetchBook(id) {
             try {
                 const response = await getItem(id);
@@ -24,22 +27,14 @@ export const useMyApi = defineStore('myApi', {
                 console.error('Erro ao buscar o livro:', error);
             }
         },
+
         async createBook(book) {
             try {
                 const response = await createItem(book);
                 this.books.push(response.data);
-                Swal.fire({
-                    title: "SUCESSO!!",
-                    text: "LIVRO REGISTRADO COM SUCESSO!",
-                    icon: "success"
-                });
+                Swal.fire(messages.success);
             } catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: `Erro ao criar o livro: ${error.message}`,
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
+                Swal.fire(messages.error);
             }
         },
 
@@ -47,44 +42,19 @@ export const useMyApi = defineStore('myApi', {
         async updateBook(id, book) {
             try {
                 await updateItem(id, book);
-                await this.fetchBook(id);
+                this.books.findIndex(b => b.id === id);
             } catch (error) {
                 console.error('Erro ao atualizar o livro:', error);
             }
         },
-        
+
 
         async deleteBook(id) {
             try {
-                const result = await Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                });
-
-                if (result.isConfirmed) {
-                    const response = await deleteItem(id);
-                    this.books = this.books.filter(book => book.id !== response.data.id);
-
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-
-                    return response.data;
-                }
+                await deleteItem(id);
+                await this.fetchBooks();
             } catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
+                console.error(error);
             }
         }
     },

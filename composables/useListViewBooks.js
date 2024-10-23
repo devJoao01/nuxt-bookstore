@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { useMyApi } from '../store/myApi';
 
-export const useBooks = () => {
+export const useListViewBooks = () => {
   const store = useMyApi();
   const error = ref(null);
   const books = ref([]);

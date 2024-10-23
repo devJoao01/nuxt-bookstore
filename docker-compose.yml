@@ -1,0 +1,14 @@
+version: '3.8'  # Adicione a versão do Docker Compose
+
+services:
+  nuxt-docker-example:
+    container_name: my-nuxt-app
+    build:
+      context: .
+      dockerfile: Dockerfile  # Certifique-se de que o nome do arquivo está correto (pode ser 'Dockerfile' com letra maiúscula)
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app  # Mapeie o diretório atual para /app no contêiner
+    environment:
+      - NODE_ENV=development  # Opcional: Defina o ambiente como desenvolvimento
