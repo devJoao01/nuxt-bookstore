@@ -51,4 +51,4 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/create-form.css"></style>
+<style scoped src="../assets/css/components/create-form.css"></style>

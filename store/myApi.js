@@ -38,7 +38,6 @@ export const useMyApi = defineStore('myApi', {
             }
         },
 
-
         async updateBook(id, book) {
             try {
                 await updateItem(id, book);
@@ -47,7 +46,6 @@ export const useMyApi = defineStore('myApi', {
                 console.error('Erro ao atualizar o livro:', error);
             }
         },
-
 
         async deleteBook(id) {
             try {
