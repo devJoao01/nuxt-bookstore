@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader />
+    <Header />
     <main id="index-page">
       <div class="container">
         <div class="navigate-menu">

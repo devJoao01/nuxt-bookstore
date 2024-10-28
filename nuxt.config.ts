@@ -3,9 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   css: [
-    'bootstrap/dist/css/bootstrap.min.css' 
+    'bootstrap/dist/css/bootstrap.min.css',
   ],
+
   plugins: [
-    { src: '~/plugins/bootstrap.js', mode: 'client' } 
+    { src: '~/plugins/bootstrap.js', mode: 'client' },
+    '~/plugins/fontawesome.js'
   ],
 })

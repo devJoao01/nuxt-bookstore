@@ -10,6 +10,6 @@ COPY . .
 
 RUN npm run build
 
-COPY start.sh .
+RUN npm run clean
 
-CMD ["sh", "./start.sh"]
+RUN npm run dev
