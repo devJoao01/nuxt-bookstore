@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div v-for="book in books" :key="book.id" class="col-md-6 col-xxl-4">
+        <div v-for="book in books" :key="book.id" class="col-md-6 col-xxl-3">
         <div class="card">
             <div class="card-thumb">
                 <img src="https://down-br.img.susercontent.com/file/96d5d8ddded82cb210711234ad18c752" alt="">

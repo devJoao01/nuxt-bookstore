@@ -1,15 +1,13 @@
 <template>
-  <section class="col-lg-10 mx-auto">
-    <div class="box-title">
-      <h2 class="title">
-        TESTE
-      </h2>
-      <div class="page">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus odio facere repellendus optio ut numquam
-          quae praesentium, deserunt nam similique, officiis cum suscipit aliquam voluptatibus. Pariatur nihil
-          perferendis eligendi. Qui!</p>
-      </div>
+  <section class="block-search">
+    <h2 class="title">
+      Books
+    </h2>
+    <div class="box-search">
+      <input type="text">
     </div>
+  </section>
+  <section class="grid-books">
     <CardBook />
   </section>
 </template>

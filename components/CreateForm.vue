@@ -8,23 +8,23 @@
         </div>
       </div>
       <form class="form-layout" @submit.prevent="submitForm">
-        <div>
+        <div class="form-group">
           <label for="title">Título:</label>
           <input class="form-control" type="text" id="title" v-model="form.title" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="author">Autor:</label>
           <input class="form-control" type="text" id="author" v-model="form.author" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="isbn">ISBN:</label>
           <input class="form-control" type="text" id="isbn" v-model="form.isbn" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="publisher">Editora:</label>
           <input class="form-control" type="text" id="publisher" v-model="form.publisher" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="publication_year">Ano de Publicação:</label>
           <input class="form-control" type="number" id="publication_year" v-model="form.publication_year" required />
         </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+  
     <main id="index-page">
       <div class="container">
         <div class="navigate-menu">
@@ -23,7 +23,7 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-list" role="tabpanel" aria-labelledby="pills-home-tab"
               tabindex="0">
-              <ListView />
+            
             </div>
             <div class="tab-pane fade show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
               tabindex="0">

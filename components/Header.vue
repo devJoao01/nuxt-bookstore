@@ -1,10 +1,7 @@
 <template>
     <header class="header">
-        <div class="top-bar"></div>
         <section class="apresentation-header">
-            <div class="container">
-                <h2 class="title">dashboard bookstore</h2>
-            </div>
+            <h2 class="title">dashboard bookstore</h2>
         </section>
     </header>
 </template>
