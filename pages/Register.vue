@@ -1,4 +1,3 @@
 <template>
-    <LoginForm/>
+    <RegisterForm />
 </template>
-

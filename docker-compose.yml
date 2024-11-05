@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nuxt-docker-example:
-    container_name: my-nuxt-app
+    container_name: my-container-nuxt
     build:
       context: .
       dockerfile: Dockerfile  

@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <section class="apresentation-header">
-            <h2 class="title">dashboard bookstore</h2>
+            
         </section>
     </header>
 </template>
