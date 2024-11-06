@@ -16,16 +16,19 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@primevue/themes": "^4.2.1",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.4",
     "postcss-load-config": "^6.0.1",
+    "primevue": "^4.2.1",
     "sweetalert2": "^11.14.3",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@primevue/nuxt-module": "^4.2.1",
     "cross-env": "^7.0.3",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0"

@@ -50,7 +50,6 @@ export const useMyApi = defineStore('myApi', {
         async deleteBook(id) {
             try {
                 await deleteItem(id);
-                await this.fetchBooks();
             } catch (error) {
                 console.error(error);
             }
