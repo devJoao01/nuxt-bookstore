@@ -36,10 +36,10 @@
   </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 definePageMeta({
   middleware: 'auth'
 });
-</script>
+</script> -->
 
 <style scoped src="../assets/css/home.css"></style>

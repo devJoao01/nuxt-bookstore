@@ -1,8 +1,8 @@
-import { useUserStore } from '@/store/userStore';
+// // import { useUserStore } from '@/store/userStore';
 
-export default defineNuxtRouteMiddleware(() => {
-    // const userStore = useUserStore();
-    // if (!userStore.token) {
-    //     return navigateTo('/login');
-    // }
-});
+// export default defineNuxtRouteMiddleware(() => {
+//     // const userStore = useUserStore();
+//     // if (!userStore.token) {
+//     //     return navigateTo('/login');
+//     // }
+// });
