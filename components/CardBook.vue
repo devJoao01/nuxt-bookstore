@@ -13,7 +13,14 @@
                     <span>{{ book.publication_year }}</span>
                 </div>
                 <div class="card-footer">
-                    <button @click="handleDelete(book.id)" class="btn btn-danger">Deletar</button>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button @click="handleDelete(book.id)" class="btn btn-danger">Deletar</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button @click="handleDelete(book.id)" class="btn btn-success">Atualizar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

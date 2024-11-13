@@ -36,10 +36,13 @@
   </div>
 </template>
 
-<!-- <script setup>
-definePageMeta({
-  middleware: 'auth'
-});
-</script> -->
+
 
 <style scoped src="../assets/css/home.css"></style>
+
+
+<script setup>
+definePageMeta({
+  middleware: 'auth'  // Aplica o middleware 'auth' para proteger a rota
+});
+</script>

@@ -1,5 +1,3 @@
 <template>
     <LoginForm/>
 </template>
-
-``

@@ -30,5 +30,16 @@
                 font-size: 18px;
             }
         }
+
+        .card-footer {
+            .row {
+                margin: 0;
+
+                a,
+                button {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

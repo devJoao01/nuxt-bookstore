@@ -1,14 +1,8 @@
 <template>
-  <section class="block-search">
-    <h2 class="title">
-      Books
-    </h2>
-    <div class="box-search">
-      <input type="text">
+  <section class="apresentation-view">
+    <div class="container">
+      <CardBook />
     </div>
-  </section>
-  <section class="grid-books">
-    <CardBook />
   </section>
 </template>
 

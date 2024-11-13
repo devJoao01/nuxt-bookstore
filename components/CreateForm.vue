@@ -9,6 +9,10 @@
       </div>
       <form class="form-layout" @submit.prevent="submitForm">
         <div class="form-group">
+          <label for="image">Capa do Livro:</label>
+          <input type="file" class="form-control" id="image" @change="handleImageUpload" />
+        </div>
+        <div class="form-group">
           <label for="title">Título:</label>
           <input class="form-control" type="text" id="title" v-model="form.title" required />
         </div>
@@ -42,10 +46,18 @@ export default {
   setup() {
     const { form, submitForm, errorMessage } = useBookForm();
 
+    const handleImageUpload = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        form.image = file;
+      }
+    };
+
     return {
       form,
       submitForm,
       errorMessage,
+      handleImageUpload,
     };
   },
 };

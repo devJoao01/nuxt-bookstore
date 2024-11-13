@@ -1,3 +1,88 @@
-.header{
-    
+header {
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            @media (min-width:992px) {
+                width: auto;
+            }
+
+            img {
+                width: 170px;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        ul {
+            display: none;
+
+            @media (min-width:992px) {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 12px;
+                margin: 0;
+            }
+
+            li {
+                &.create-method {
+                    background-color: #008000;
+                    border-radius: 10px;
+                    padding: 7px 20px;
+                    text-transform: uppercase;
+                    font-size: 16px;
+
+                    @media (min-width:992px) {
+                        font-size: 18px;
+                    }
+                }
+
+                &.default {
+                    background-color: #000;
+                    border-radius: 10px;
+                    padding: 7px 20px;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+
+                &.search {
+                    border-radius: 10px;
+                    padding: 7px 20px;
+                    font-size: 16px;
+
+                    input {
+                        background-color: #fff;
+                        box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+                        font-size: 14px;
+                        color: #000;
+
+                        @media (min-width:992px) {
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                    font-weight: 700;
+
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+            }
+        }
+    }
 }

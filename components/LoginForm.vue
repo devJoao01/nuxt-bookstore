@@ -1,43 +1,93 @@
+<!-- components/Login.vue -->
 <template>
-    <div class="container">
-        <form @submit.prevent="">
-            <div class="form-layout col-lg-6 mx-auto">
-                <div class="title">
-                    <h2>Login</h2>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input class="form-control" type="text"  placeholder="Email" />
-                   <div class="icon">
-                    <font-awesome-icon :icon="['fas', 'user']" />
-                   </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input class="form-control" type="password"  placeholder="Password" />
-                    <div class="icon">
-                        <font-awesome-icon :icon="['fas', 'lock']" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <p>Esqueceu a Senha?</p>
-                </div>
-                <div class="form-group">
-                    <p>Registrar-se</p>
-                </div>
-                <div class="form-group">
-                    <button class="submit-form"  type="submit">Login</button>
-                </div>
-                <!-- <div v-if="error">{{ error }}</div> -->
-            </div>
-        </form>
-    </div>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form @submit.prevent="handleLogin">
+      <div>
+        <label for="email">Email</label>
+        <input v-model="email" type="email" id="email" required />
+      </div>
+
+      <div>
+        <label for="password">Senha</label>
+        <input v-model="password" type="password" id="password" required />
+      </div>
+
+      <button type="submit" :disabled="isLoading">
+        {{ isLoading ? 'Entrando...' : 'Entrar' }}
+      </button>
+
+      <div v-if="error" class="error">{{ error }}</div>
+    </form>
+  </div>
 </template>
 
-<!-- <script setup>
-import { useAuth } from '@/composables/useAuth';
+<script setup>
+import { ref } from 'vue'
+import { useAuthStore } from '~/composables/useAuthLogin'
 
-const { email, password, error, handleLogin } = useAuth();
-</script> -->
+const email = ref('')
+const password = ref('')
+const error = ref(null)
+const isLoading = ref(false)
 
-<style src="../assets/css/components/login-card.css"></style>
+const authStore = useAuthStore()
+
+const handleLogin = async () => {
+  isLoading.value = true
+  error.value = null
+
+  try {
+    await authStore.login(email.value, password.value)
+  } catch (err) {
+    error.value = err.message || 'Erro ao fazer login'
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>
+
+<style scoped>
+/* Estilos básicos para o componente de login */
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+</style>

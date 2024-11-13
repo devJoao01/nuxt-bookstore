@@ -11,6 +11,6 @@ export const updateItem = (id, book) => api.put(`/api/books/${id}`, book);
 export const deleteItem = (id) => api.delete(`/api/books/${id}`);
 
 // Auth Functions
-// export const login = (email, password) => api.post('/api/login', { email, password });
-// export const register = (userData) => api.post('/api/register', userData);
+export const login = (email, password) => api.post('/api/login', { email, password });
+export const register = (userData) => api.post('/api/register', userData);
 // export const logout = () => api.post('/api/token/revoke/');

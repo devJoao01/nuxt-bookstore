@@ -23,5 +23,19 @@ export const messages = {
         errorTitle: 'Erro!',
         errorText: 'Ocorreu um erro ao tentar excluir o livro.',
         errorIcon: 'error'
+    },
+    update: {
+        title: 'Você tem certeza?',
+        text: 'As alterações feitas serão salvas permanentemente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, atualizar!',
+        cancelButtonText: 'Cancelar',
+        successTitle: 'Atualizado!',
+        successText: 'O livro foi atualizado com sucesso.',
+        successIcon: 'success',
+        errorTitle: 'Erro!',
+        errorText: 'Ocorreu um erro ao tentar atualizar o livro.',
+        errorIcon: 'error'
     }
-}
+};
