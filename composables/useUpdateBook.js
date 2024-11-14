@@ -1,38 +1,58 @@
-import { useMyApi } from '@/store/myApi';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import { messages } from '@/utils/messages';
 
-export const useUpdateBook = () => {
-    const { updateBook, books, $patch } = useMyApi();
+export function useUpdateBook() {
+  const updateBookAction = async (bookId, currentBookData) => {
+    const { value: formValues } = await Swal.fire({
+      title: 'Atualizar Livro',
+      html: `
+        <input id="swal-input1" class="swal2-input" placeholder="Título" value="${currentBookData.title}" />
+        <input id="swal-input2" class="swal2-input" placeholder="Autor" value="${currentBookData.author}" />
+        <input id="swal-input3" class="swal2-input" placeholder="ISBN" value="${currentBookData.isbn}" />
+        <input id="swal-input4" class="swal2-input" placeholder="Editora" value="${currentBookData.publisher}" />
+        <input id="swal-input5" class="swal2-input" placeholder="Ano de Publicação" value="${currentBookData.publication_year}" />
+      `,
+      focusConfirm: false,
+      preConfirm: () => {
+        return {
+          title: document.getElementById('swal-input1').value,
+          author: document.getElementById('swal-input2').value,
+          isbn: document.getElementById('swal-input3').value,
+          publisher: document.getElementById('swal-input4').value,
+          publication_year: document.getElementById('swal-input5').value,
+        };
+      },
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Atualizar',
+      cancelButtonColor: '#d33',
+    });
 
-    const updateBookAction = async (id, updatedBookData) => {
-        try {
-            const result = await Swal.fire({
-                title: messages.update.title,
-                text: messages.update.text,
-                icon: messages.update.icon,
-                showCancelButton: messages.update.showCancelButton,
-                confirmButtonText: messages.update.confirmButtonText,
-                cancelButtonText: messages.update.cancelButtonText,
-            });
+    if (formValues) {
+      try {
+        const response = await axios.put(`http://localhost:8001/api/books/${bookId}`, formValues);
 
-            if (result.isConfirmed) {
-                await updateBook(id, updatedBookData);
+        Swal.fire({
+          icon: 'success',
+          title: messages.update.successTitle,
+          text: messages.update.successText,
+        });
 
-                const index = books.findIndex(book => book.id === id);
-                if (index !== -1) {
-                    $patch(state => {
-                        state.books[index] = { ...state.books[index], ...updatedBookData };
-                    });
-                }
+        console.log('Livro atualizado com sucesso!', response.data);
+      } catch (error) {
+        console.error('Erro ao atualizar o livro:', error);
 
-                Swal.fire(messages.update.successTitle, messages.update.successText, messages.update.successIcon);
-            }
-        } catch (error) {
-            console.error('Erro ao atualizar livro:', error);
-            Swal.fire(messages.update.errorTitle, messages.update.errorText, messages.update.errorIcon);
-        }
-    };
+        Swal.fire({
+          icon: 'error',
+          title: messages.update.errorTitle,
+          text: messages.update.errorText,
+        });
+      }
+    }
+  };
 
-    return { updateBookAction };
-};
+  return {
+    updateBookAction,
+  };
+}

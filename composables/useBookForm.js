@@ -1,5 +1,7 @@
 import { ref } from 'vue';
 import { useMyApi } from '@/store/myApi';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 export function useBookForm() {
   const form = ref({
@@ -19,8 +21,10 @@ export function useBookForm() {
 
       resetForm();
       errorMessage.value = '';
+      console.log(router);
+      router.push('/dashboard')
     } catch (error) {
-      errorMessage.value = 'Erro ao cadastrar o livro. Tente novamente.';
+      // errorMessage.value = 'Erro ao cadastrar o livro. Tente novamente.';
     }
   };
 

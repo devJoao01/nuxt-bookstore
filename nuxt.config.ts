@@ -12,12 +12,20 @@ export default defineNuxtConfig({
     baseURL: 'http://localhost:8001/api',
   },
    // @ts-ignore
-   authSanctum: {
-    apiUrl: 'http://localhost:8001/api',  
-    loginUrl: '/login',             
-    logoutUrl: '/logout',          
-    registerUrl: '/register',      
-    redirectTo: '/',                
+  //  authSanctum: {
+  //   apiUrl: 'http://localhost:8001/api',  
+  //   loginUrl: '/login',             
+  //   logoutUrl: '/logout',          
+  //   registerUrl: '/register',      
+  //   redirectTo: '/',                
+  // },
+  sanctum: {
+    baseUrl: 'http://localhost:8001',
+    endpoints: {
+      login: '/api/login',
+      user: '/api/user',
+      // logout: '/api/auth/logout'
+    }
   },
   primevue: {
     options: {

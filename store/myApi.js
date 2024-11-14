@@ -16,6 +16,7 @@ export const useMyApi = defineStore('myApi', {
                 this.books = response.data;
             } catch (error) {
                 console.error('Erro ao buscar os livros:', error);
+                Swal.fire(messages.error);
             }
         },
 
@@ -25,6 +26,7 @@ export const useMyApi = defineStore('myApi', {
                 this.book = response.data;
             } catch (error) {
                 console.error('Erro ao buscar o livro:', error);
+                Swal.fire(messages.error);
             }
         },
 
@@ -34,25 +36,69 @@ export const useMyApi = defineStore('myApi', {
                 this.books.push(response.data);
                 Swal.fire(messages.success);
             } catch (error) {
+                console.error('Erro ao criar o livro:', error);
                 Swal.fire(messages.error);
             }
         },
 
         async updateBook(id, book) {
             try {
-                await updateItem(id, book);
-                this.books.findIndex(b => b.id === id);
+                const response = await updateItem(id, book);
+                const index = this.books.findIndex(b => b.id === id);
+                if (index !== -1) {
+                    this.books[index] = response.data;
+                }
+                Swal.fire(messages.success);
             } catch (error) {
                 console.error('Erro ao atualizar o livro:', error);
+                Swal.fire(messages.error);
             }
         },
 
         async deleteBook(id) {
             try {
                 await deleteItem(id);
+                this.books = this.books.filter(b => b.id !== id);
+                Swal.fire(messages.success);
             } catch (error) {
-                console.error(error);
+                console.error('Erro ao excluir o livro:', error);
+                Swal.fire(messages.error);
             }
+        }
+    },
+
+
+    getters: {
+        // Retorna todos os livros
+        allBooks(state) {
+            return state.books;
+        },
+
+        // Retorna o livro atual (único)
+        currentBook(state) {
+            return state.book;
+        },
+
+        // Retorna o número de livros armazenados
+        bookCount(state) {
+            return state.books.length;
+        },
+
+        // Verifica se há livros na lista
+        hasBooks(state) {
+            return state.books.length > 0;
+        },
+
+        // Filtra os livros que contêm um termo na title
+        filteredBooks: (state) => (searchTerm) => {
+            return state.books.filter(book =>
+                book.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        },
+
+        // Verifica se o livro está na lista
+        isBookInList: (state) => (bookId) => {
+            return state.books.some(book => book.id === bookId);
         }
     },
 });

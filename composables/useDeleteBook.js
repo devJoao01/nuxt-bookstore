@@ -1,9 +1,13 @@
+import { storeToRefs } from 'pinia';
+
 import { useMyApi } from '@/store/myApi';
 import Swal from 'sweetalert2';
-import { messages } from '@/utils/messages'; 
+import { messages } from '@/utils/messages';
 
 export const useDeleteBook = () => {
-    const { deleteBook, books, $patch } = useMyApi();
+    const { deleteBook, fetchBooks, books } = useMyApi(); 
+
+    const { allBooks } = storeToRefs(books); 
 
     const deleteBookAction = async (id) => {
         try {
@@ -17,13 +21,8 @@ export const useDeleteBook = () => {
             });
 
             if (result.isConfirmed) {
-                await deleteBook(id);
-                const index = books.findIndex(book => book.id === id);
-                if (index !== -1) {
-                    $patch(state => {
-                        state.books = state.books.filter(book => book.id !== id);
-                    });
-                }
+                await deleteBook(id); 
+                await fetchBooks(); 
                 Swal.fire(messages.delete.successTitle, messages.delete.successText, messages.delete.successIcon);
             }
         } catch (error) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="form-create col-lg-10 mx-auto">
+    <section class="form-create col-lg-8 mx-auto">
       <div class="box-title">
         <h2 class="title">Cadastrar Livro</h2>
         <div class="page">
@@ -8,10 +8,6 @@
         </div>
       </div>
       <form class="form-layout" @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="image">Capa do Livro:</label>
-          <input type="file" class="form-control" id="image" @change="handleImageUpload" />
-        </div>
         <div class="form-group">
           <label for="title">Título:</label>
           <input class="form-control" type="text" id="title" v-model="form.title" required />
@@ -32,7 +28,9 @@
           <label for="publication_year">Ano de Publicação:</label>
           <input class="form-control" type="number" id="publication_year" v-model="form.publication_year" required />
         </div>
-        <button type="submit">Cadastrar</button>
+        <div class="form-group">
+          <button type="submit">Cadastrar</button>
+        </div>
       </form>
       <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     </section>
@@ -41,6 +39,7 @@
 
 <script>
 import { useBookForm } from '@/composables/useBookForm';
+
 
 export default {
   setup() {

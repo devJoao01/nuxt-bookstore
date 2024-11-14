@@ -1,4 +1,3 @@
-// composables/useAuthRegister.js
 import { ref } from 'vue';
 import axios from 'axios';
 
@@ -11,12 +10,10 @@ export function useAuthRegister() {
   const success = ref(null);
 
   const handleRegister = async () => {
-    // Verificar se as senhas coincidem
     if (password.value !== confirmPassword.value) {
       error.value = 'As senhas não coincidem';
       return;
     }
-
     error.value = null;
     success.value = null;
 
@@ -25,14 +22,19 @@ export function useAuthRegister() {
         name: name.value,
         email: email.value,
         password: password.value,
-        password_confirmation: confirmPassword.value, // Enviando com o nome correto
+        password_confirmation: confirmPassword.value,
       });
 
-      success.value = 'Registro realizado com sucesso!';
-      // Armazenar o token, se necessário, ou fazer redirecionamento
-      // Exemplo: localStorage.setItem('token', response.data.access_token);
+      if (response.data.message) {
+        success.value = response.data.message;
+      }
+
     } catch (err) {
-      error.value = 'Erro ao registrar. Tente novamente.';
+      if (err.response && err.response.status === 422 && err.response.data.errors) {
+        error.value = Object.values(err.response.data.errors).flat().join(' ');
+      } else {
+        error.value = 'Erro ao registrar. Tente novamente.';
+      }
       console.error(err);
     }
   };
@@ -44,6 +46,6 @@ export function useAuthRegister() {
     confirmPassword,
     error,
     success,
-    handleRegister
+    handleRegister,
   };
 }
